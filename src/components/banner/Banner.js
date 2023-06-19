@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const Banner = () => {
   const [movies, setMovies] = useState([]);
-  const { data, error, isLoading } = useSWR(
+  const { data } = useSWR(
     "https://api.themoviedb.org/3/movie/upcoming?api_key=2a660acf57ccf68e13434b6e40b0adc0",
     fetcher
   );

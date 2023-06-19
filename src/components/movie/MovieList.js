@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const MovieList = ({ api }) => {
   const [movies, setMovies] = useState([]);
-  const { data, error, isLoading } = useSWR(api, fetcher);
+  const { data } = useSWR(api, fetcher);
   useEffect(() => {
     if (data && data.results) setMovies(data?.results);
   }, [data]);
