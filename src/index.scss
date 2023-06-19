@@ -14,4 +14,8 @@
     margin-right: auto;
     @apply mx-auto;
   }
+  .movie-list .swiper-slide {
+    max-width: 25%;
+    height: auto;
+  }
 }
