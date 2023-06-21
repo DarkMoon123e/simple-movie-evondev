@@ -11,6 +11,7 @@ const MovieList = ({ api }) => {
   const { data } = useSWR(api, fetcher);
   useEffect(() => {
     if (data && data.results) setMovies(data?.results);
+    console.log(data);
   }, [data]);
 
   return (
