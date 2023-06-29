@@ -1,8 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
-import HomePage from "./pages/HomePage";
 import Banner from "./components/banner/Banner";
+
+import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
+import MovieDetailPage from "./pages/MovieDetailPage";
 
 function App() {
   return (
@@ -23,6 +25,14 @@ function App() {
             element={
               <>
                 <MoviePage></MoviePage>
+              </>
+            }
+          ></Route>
+          <Route
+            path="/movie/:movieId"
+            element={
+              <>
+                <MovieDetailPage></MovieDetailPage>
               </>
             }
           ></Route>

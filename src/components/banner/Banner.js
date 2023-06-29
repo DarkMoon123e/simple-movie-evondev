@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "../../config";
+import { fetcher, tmdbAPI } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
+import Button from "src/components/button/Button";
 
 const Banner = () => {
   const [movies, setMovies] = useState([]);
-  const { data } = useSWR(
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=2a660acf57ccf68e13434b6e40b0adc0",
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieList("upcoming"), fetcher);
   useEffect(() => {
     if (data && data.results) setMovies(data?.results);
   }, [data]);
@@ -36,7 +35,8 @@ const Banner = () => {
 };
 
 const BannerItem = (props) => {
-  const { poster_path, title } = props.movie;
+  const { poster_path, title, id } = props.movie;
+  const navigate = useNavigate();
   return (
     <div className="w-full h-full rounded-lg relative">
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg"></div>
@@ -58,9 +58,15 @@ const BannerItem = (props) => {
             Adventure
           </span>
         </div>
-        <button className="py-3 px-6 rounded-lg bg-primary text-white font-medium">
+        {/* <button
+          className="py-3 px-6 rounded-lg bg-primary text-white font-medium"
+          onClick={() => navigate(`/movie/${id}`)}
+        >
           Watch now
-        </button>
+        </button> */}
+        <Button onClick={() => navigate(`/movie/${id}`)} className={`w-auto`}>
+          Xem ngay
+        </Button>
       </div>
     </div>
   );

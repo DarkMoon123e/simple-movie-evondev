@@ -11,7 +11,6 @@ const MovieList = ({ api }) => {
   const { data } = useSWR(api, fetcher);
   useEffect(() => {
     if (data && data.results) setMovies(data?.results);
-    console.log(data);
   }, [data]);
 
   return (
@@ -26,6 +25,7 @@ const MovieList = ({ api }) => {
                 title={movie.title}
                 date={movie.release_date}
                 poster={movie.poster_path}
+                id={movie.id}
               ></MovieCard>
             </SwiperSlide>
           ))}
